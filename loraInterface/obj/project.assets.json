@@ -1235,23 +1235,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Users\\vladislav-b\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\loraInterface.csproj",
+      "projectUniqueName": "D:\\library\\git_hub\\loraInterface\\loraInterface\\loraInterface.csproj",
       "projectName": "loraInterface",
-      "projectPath": "C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\loraInterface.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\obj\\",
+      "projectPath": "D:\\library\\git_hub\\loraInterface\\loraInterface\\loraInterface.csproj",
+      "packagesPath": "C:\\Users\\vladislav-b\\.nuget\\packages\\",
+      "outputPath": "D:\\library\\git_hub\\loraInterface\\loraInterface\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vladislav-b\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1320,7 +1320,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

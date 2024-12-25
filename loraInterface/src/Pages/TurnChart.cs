@@ -64,7 +64,9 @@ namespace loraInterface.src.Pages
         // Метод для загрузки данных на график из файла
         private void LoadData()
         {
-            List<TurnData> turnDataList = TurnData.ReadTurnDataFromFile(); // Чтение данных о вращениях из файла
+            DataTurn dataTurnInstance = new DataTurn(false, 0, 0, "");
+            List<DataProcessing> processingList = dataTurnInstance.ReadFromFile(); // Чтение данных о вращениях из файла
+            List<DataTurn> turnDataList = processingList.OfType<DataTurn>().ToList();
 
             chart.Series["Актуальные вращения"].Points.Clear(); // Очистка текущих данных на графике перед загрузкой новых
 
@@ -74,7 +76,7 @@ namespace loraInterface.src.Pages
                 int actualTurn = turnData.ActualTurn;
 
                 // Пытаемся распарсить дату и время с учетом нового формата "d.MM.yyyy HH:mm:ss"
-                if (DateTime.TryParseExact(turnData.Data, "d.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                if (DateTime.TryParseExact(turnData.Data, "d.MM.yyyy H:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                 {
                     chart.Series["Актуальные вращения"].Points.AddXY(date, actualTurn); // Добавляем точку данных на график
                 }

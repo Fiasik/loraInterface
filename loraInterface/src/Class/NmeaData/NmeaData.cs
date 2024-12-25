@@ -5,7 +5,7 @@ public class NmeaData
     public string Type { get; set; }
     public List<string> Data { get; set; }
 
-    public NmeaData(string type, List<string> data)
+    public NmeaData(string type,List<string> data)
     {
         Type = type;
         Data = data;
@@ -40,7 +40,7 @@ public class NmeaData
 
             List<NmeaData> existingNmeaDataList = NmeaData.ReadNmeaDataFromFile();
             existingNmeaDataList.Add(newNmeaData);
-            NmeaData.WriteNmeaDataToFile(existingNmeaDataList);
+            NmeaData.WriteNmeaDataToFile(ref existingNmeaDataList);
             //MessageBox.Show(newNmeaData.ToString(), "Новые данные NMEA", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         catch (Exception e)
@@ -50,9 +50,9 @@ public class NmeaData
     }
     public static List<NmeaData> ReadNmeaDataFromFile()
     {
-        string currentDirectory = Directory.GetCurrentDirectory();
-        string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
-        //string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
+        // string currentDirectory = Directory.GetCurrentDirectory();
+        //const string pathFile = "D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json";
+        const string pathFile = "D:\\library\\git_hub\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json";
         try
         {
             if (!File.Exists(pathFile))
@@ -77,11 +77,11 @@ public class NmeaData
         }
     }
 
-    public static void WriteNmeaDataToFile(List<NmeaData> nmeaDataList)
+    public static void WriteNmeaDataToFile(ref List<NmeaData> nmeaDataList)
     {
-        string currentDirectory = Directory.GetCurrentDirectory();
-        string pathFile = Path.Combine("D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
-        //string pathFile = Path.Combine("C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json");
+        // string currentDirectory = Directory.GetCurrentDirectory();
+        // const string pathFile = "D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json";
+        const string pathFile = "D:\\library\\git_hub\\loraInterface\\loraInterface\\src\\Class\\NmeaData\\nmea_data.json";
 
         try
         {

@@ -5,10 +5,6 @@ namespace loraInterface.src.Admin
     public partial class PageCommands : UserControl
     {
         private PortManagement portManagement;
-        private Timer updateTimer;
-        private List<TurnData> turnDataList;
-
-
         public PageCommands(PortManagement portManagement)
         {
             InitializeComponent();
@@ -18,10 +14,11 @@ namespace loraInterface.src.Admin
 
         private void LoadData()
         {
-            turnDataList = TurnData.ReadTurnDataFromFile();
-            if (turnDataList.Count > 0)
+            DataTurn dataTurnInstance = new DataTurn(false, 0, 0, "");  
+            List<DataProcessing> dataTurnList = dataTurnInstance.ReadFromFile();
+            if (dataTurnList.Count > 0)
             {
-                TurnData lastTurnData = turnDataList[turnDataList.Count - 1];
+                DataTurn lastTurnData = dataTurnList[dataTurnList.Count - 1] as DataTurn;
                 turnTrackBar1.Value = lastTurnData.TurnValue; // Установка начального значения
             }
         }

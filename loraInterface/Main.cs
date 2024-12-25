@@ -1,5 +1,4 @@
 using loraInterface.src.Admin;
-using loraInterface.src.Controls;
 using loraInterface.src.Pages;
 using Timer = System.Windows.Forms.Timer;
 
@@ -15,7 +14,7 @@ namespace loraInterface
             InitializeComponent();
 
             updateTimer = new Timer();
-            updateTimer.Interval = 1000; // 1 секунд
+            updateTimer.Interval = 1000; // 1 СЃРµРєСѓРЅРґ
             updateTimer.Tick += new EventHandler(UpdateLabelStateCommand);
 
             updateTimer.Start();
@@ -36,7 +35,7 @@ namespace loraInterface
             statusBar1.status_command_value_text = portManagement.sendDataState;
             if (portManagement.sendDataState != "")
             {
-                statusBar1.status_command_text = "Состояние команды";
+                statusBar1.status_command_text = "РЎРѕСЃС‚РѕСЏРЅРёРµ РєРѕРјР°РЅРґС‹:";
             }
             else
             {
@@ -53,7 +52,17 @@ namespace loraInterface
             }
             else
             {
-                MessageBox.Show("commandPort не инициализирован.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("commandPort РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂРѕРІР°РЅ.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            string relativePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src");
+            string pathFile = Path.GetFullPath(relativePath);
+
+            // РЎРѕР·РґР°С‘Рј РґРёСЂРµРєС‚РѕСЂРёСЋ, РµСЃР»Рё РѕРЅР° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
+            string directoryPath = Path.GetDirectoryName(pathFile);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
             }
         }
 

@@ -16,5 +16,23 @@
     "turnValue": 620,
     "actualTurn": 620,
     "data": "19.12.2024 9:10:45"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 620,
+    "actualTurn": 620,
+    "data": "19.12.2024 9:20:45"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 720,
+    "actualTurn": 720,
+    "data": "19.12.2024 9:21:20"
+  },
+  {
+    "rotationStatus": true,
+    "turnValue": 820,
+    "actualTurn": 820,
+    "data": "19.12.2024 9:22:20"
   }
 ]

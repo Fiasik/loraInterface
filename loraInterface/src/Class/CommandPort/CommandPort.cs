@@ -5,23 +5,22 @@ public class PortManagement
 {
     private SerialPort serialPortFirst;
     private SerialPort serialPortSecond;
-    private object lockObject = new object();
-
-    public string command = "";
-    public bool sendData = false;
-    public string sendDataState = "";
-
     private string port_first;
     private string port_second;
-
     public string port_first_open = "Не подключен";
     public string port_second_open = "Не подключен";
+    private object lockObject = new object();
+    private bool sendData = false;
+    private string command = "";
+    public string sendDataState = "";
 
     public PortManagement()
     {
-        port_first = "COM9";
-        port_second = "COM5";
+        // Порты
+        port_first = "COM10";
+        port_second = "COM12";
 
+        //Настройки портов
         int baudRate = 115200;
         Parity parity = Parity.None;
         int dataBits = 8;
@@ -29,8 +28,8 @@ public class PortManagement
 
         serialPortFirst = new SerialPort(port_first, baudRate, parity, dataBits, stopBits);
         serialPortSecond = new SerialPort(port_second, baudRate, parity, dataBits, stopBits);
+        
     }
-
     public void OpenPorts()
     {
         try
@@ -46,7 +45,6 @@ public class PortManagement
             port_first_open = "Не подключен";
         }
     }
-
     public void ClosePorts()
     {
         if (serialPortFirst.IsOpen)
@@ -61,7 +59,6 @@ public class PortManagement
             port_second_open = "Не подключен";
         }
     }
-
     public void ReadData()
     {
         try
@@ -78,8 +75,8 @@ public class PortManagement
                     }
                 }
 
-                var dataFirst = serialPortFirst.ReadLine().Trim();
-                ProcessData(dataFirst);
+                string dataFirst = serialPortFirst.ReadLine().Trim();
+                DataProcess(dataFirst);
                 LogDataToFile(dataFirst);
             }
         }
@@ -92,8 +89,7 @@ public class PortManagement
             MessageBox.Show($"Ошибка при чтении из порта: {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
-
-    private void ProcessData(string data)
+    private void DataProcess(string data)
     {
         if (data == "NOT SEND")
         {
@@ -110,13 +106,12 @@ public class PortManagement
 
         UpdateFromMessage(data);
     }
-
     private void LogDataToFile(string data)
     {
         try
         {
-            string logFilePath = "D:\\Tree\\I\\library\\Git\\loraInterface\\loraInterface\\src\\Class\\CommandPort\\received_data.txt";
-
+            //const string pathFile = "C:\\Tree\\programming\\GitHub\\loraInterface\\loraInterface\\src\\Class\\CommandPort\\received_data.txt";
+            string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "src", "received_data.txt");
             using (StreamWriter writer = new StreamWriter(logFilePath, true))
             {
                 writer.WriteLine($"{DateTime.Now}: {data}");
@@ -127,7 +122,6 @@ public class PortManagement
             MessageBox.Show($"Ошибка при записи данных в файл: {e.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
-
     public void SendCommand(string command)
     {
         try
@@ -166,15 +160,16 @@ public class PortManagement
 
             foreach (string msg in messages)
             {
+                // Tuple<bool, int, int, string> DataParams;
                 if (msg.Contains("//RATATION"))
                 {
-                    TurnData turnData = new TurnData(false, 0, 0, "");
-                    turnData.ProcessTurnData(msg);
+                    DataTurn dataTurn = new DataTurn(false, 0, 0, "");
+                    dataTurn.ProcessData(msg);
                 }
                 else if (msg.StartsWith("$"))
                 {
-                    NmeaData nmeaData = new NmeaData("", new List<string>());
-                    nmeaData.ProcessNmeaData(msg);
+                    DataNmea dataNmea = new DataNmea("", new List<string>());
+                    dataNmea.ProcessData(msg);
                 }
             }
         }

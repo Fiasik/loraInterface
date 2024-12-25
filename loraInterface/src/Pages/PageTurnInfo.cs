@@ -34,12 +34,13 @@ namespace loraInterface.src.Admin
         {
             try
             {
-                List<TurnData> turnDataList = TurnData.ReadTurnDataFromFile();
+                DataTurn dataTurnInstance = new DataTurn(false, 0, 0, "");
+                List<DataProcessing> turnDataList = dataTurnInstance.ReadFromFile();
 
                 if (turnDataList.Count > 0)
                 {
                     // Получаем последние данные
-                    TurnData lastTurnData = turnDataList[turnDataList.Count - 1];
+                    DataTurn lastTurnData = turnDataList[turnDataList.Count - 1] as DataTurn;
 
                     // Обновляем свойства элементов CellParamsInfo
                     cellParamsInfoState.labelParamText = "Состояние:";
@@ -53,6 +54,7 @@ namespace loraInterface.src.Admin
                 }
                 else
                 {
+                    // Если данных нет, показываем пустые значения
                     //MessageBox.Show("Данных нет, файл пустой.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cellParamsInfoState.labelParamText = "Состояние:";
                     cellParamsInfoState.labelValueText = "null";
