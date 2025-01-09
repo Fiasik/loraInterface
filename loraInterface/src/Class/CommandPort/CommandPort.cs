@@ -6,7 +6,7 @@ public class PortManagement
     private SerialPort serialPortFirst;
     private SerialPort serialPortSecond;
     private string port_first;
-    private string port_second;
+    private string port_second; // ffffffff
     public string port_first_open = "Не подключен";
     public string port_second_open = "Не подключен";
     private object lockObject = new object();
